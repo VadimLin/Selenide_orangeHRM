@@ -1,0 +1,1 @@
+{"uuid":"18368bae-a782-4683-bc96-57ef7a1ef058","name":"eu.senla.BaseTest.tearDown","children":["cd9eff39-a85b-4fad-8a10-86443079b519"],"description":"","befores":[],"afters":[{"name":"tearDown","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1757499545937,"stop":1757499546197}],"start":1757499545937,"stop":1757499546197}

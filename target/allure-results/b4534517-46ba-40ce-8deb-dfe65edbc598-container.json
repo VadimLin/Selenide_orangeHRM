@@ -1,0 +1,1 @@
+{"uuid":"b4534517-46ba-40ce-8deb-dfe65edbc598","name":"eu.senla.BaseTest.setup","children":["f4a56808-3f78-4e25-9a86-e8926e7f2def"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1757599735862,"stop":1757599735862}],"afters":[],"start":1757599735862,"stop":1757599735862}
