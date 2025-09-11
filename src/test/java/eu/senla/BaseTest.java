@@ -17,12 +17,13 @@ public class BaseTest {
 
   @BeforeMethod
   public void setup() {
+
     Configuration.browser = ReadPropertyFile.getProperty("BROWSER");
     Configuration.timeout = Long.parseLong(ReadPropertyFile.getProperty("TIMEOUT"));
     Configuration.browserSize = ReadPropertyFile.getProperty("BROWSER.SIZE");
     Configuration.reportsFolder = "target/allure-results";
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    Configuration.remote = ReadPropertyFile.getProperty("selenoidUrl");
+    Configuration.remote = ReadPropertyFile.getProperty("selenoidUIUrl");
 
 
 

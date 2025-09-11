@@ -81,6 +81,7 @@ public class PimPage extends BasePage {
     return this;
   }
 
+
   @Step("Clear Last Name field")
   public PimPage clearLastName() {
     WebElement lastNameElement = lastNameInput.shouldBe(visible);

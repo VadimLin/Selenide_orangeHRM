@@ -69,6 +69,7 @@ public class AdminPage extends BasePage {
     return this;
   }
 
+
   public String getJobTitle() {
     return jobTitle.shouldBe(visible).getText();
   }

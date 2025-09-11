@@ -23,6 +23,7 @@ public class LeavePage {
   private final SelenideElement entitlementsDropDown =
           $x("//span[normalize-space()='Entitlements']//i[@class='oxd-icon bi-chevron-down']");
   private final SelenideElement addEntitlementsButton = $x("//a[text()='Add Entitlements']");
+
   private final SelenideElement entitlementField =
           $x(
           "//div[@class='oxd-input-group oxd-input-field-bottom-space']"

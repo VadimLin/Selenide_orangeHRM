@@ -63,6 +63,7 @@ public class LoginTest extends BaseTest {
     sa.assertAll();
   }
 
+
   @Epic("Authentication")
   @Feature("Login")
   @Story("User is not able to login to the app with empty credentials")

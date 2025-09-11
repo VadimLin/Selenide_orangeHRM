@@ -27,6 +27,7 @@ public final class LoginHelper {
     String htmlContent = firstResponse.asString();
     Document doc = Jsoup.parse(htmlContent);
 
+
     Element authLogin = doc.selectFirst("auth-login");
     if (authLogin != null) {
       token = authLogin.attr(":token");

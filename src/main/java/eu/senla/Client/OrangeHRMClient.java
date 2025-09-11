@@ -10,6 +10,7 @@ import static io.restassured.RestAssured.given;
 @UtilityClass
 public final class OrangeHRMClient {
 
+
   public Response getRequest(String url) {
     return given().when().get(url);
   }
