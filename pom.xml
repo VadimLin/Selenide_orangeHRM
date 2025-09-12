@@ -171,15 +171,13 @@
           -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
         </argLine>
         <suiteXmlFiles>
-          <suiteXmlFile>testng.xml</suiteXmlFile>
+          <suiteXmlFile>AllTest.xml</suiteXmlFile>
         </suiteXmlFiles>
         <systemPropertyVariables>
           <browser>${browser.name}</browser>
           <thread-count>${thread.count.value}</thread-count>
           <parallel>${parallel.value}</parallel>
-          <selenoidEnable>${selenoid.enable}</selenoidEnable>
           <selenoidUrl>${selenoid.url}</selenoidUrl>
-          <headless>${headless}</headless>
         </systemPropertyVariables>
       </configuration>
       <executions>
