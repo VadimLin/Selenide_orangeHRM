@@ -28,7 +28,7 @@
     <jackson.version>2.19.0</jackson.version>
     <rest.assured.version>5.5.5</rest.assured.version>
     <lombok.version>1.18.38</lombok.version>
-    <browser.name>chrome</browser.name>
+    <browser.name>firefox</browser.name>
     <thread.count.value>3</thread.count.value>
     <parallel.value>classes</parallel.value>
     <selenoid.enable>true</selenoid.enable>

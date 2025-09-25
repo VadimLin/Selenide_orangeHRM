@@ -24,7 +24,7 @@ public class BaseTest {
     Configuration.reportsFolder = "target/allure-results";
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     Configuration.remote = ReadPropertyFile.getProperty("selenoidUIUrl");
-
+    Configuration.headless = false;
 
 
   }

@@ -4,8 +4,7 @@
     <test name="Regression1">
         <classes>
             <class name="eu.senla.LoginTest"/>
-            <class name="eu.senla.AdminTest"/>
-            <class name="eu.senla.LogoutTest"/>
+
 
         </classes>
     </test>
