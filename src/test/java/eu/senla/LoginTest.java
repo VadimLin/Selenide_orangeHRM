@@ -1,6 +1,7 @@
 package eu.senla;
 
 import com.codeborne.selenide.WebDriverRunner;
+import eu.senla.DataProviders.ProjectDataProvider;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.LoginPage.LoginPage;
 import eu.senla.PropertyFile.ReadPropertyFile;

@@ -23,8 +23,8 @@ public class BaseTest {
     Configuration.browserSize = ReadPropertyFile.getProperty("BROWSER.SIZE");
     Configuration.reportsFolder = "target/allure-results";
     SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    Configuration.remote = ReadPropertyFile.getProperty("selenoidUIUrl");
-    Configuration.headless = false;
+//    Configuration.remote = ReadPropertyFile.getProperty("selenoidUIUrl");
+//    Configuration.headless = false;
 
 
   }

@@ -1,8 +1,10 @@
-package eu.senla;
+package eu.senla.DataProviders;
 
 import org.testng.annotations.DataProvider;
 
+
 public class ProjectDataProvider {
+
   @DataProvider(name = "getCredentials")
   private static Object[][] getCredentials() {
     return new Object[][] {
