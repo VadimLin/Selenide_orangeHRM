@@ -1,6 +1,5 @@
 package eu.senla;
 
-
 import com.codeborne.selenide.WebDriverRunner;
 import com.github.javafaker.Faker;
 import eu.senla.AdminPage.AdminPage;
@@ -36,7 +35,7 @@ public class AdminTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.ADMIN_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     sa.assertAll();
     logoutUser();
@@ -69,7 +68,7 @@ public class AdminTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.JOB_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     sa.assertAll();
     logoutUser();
@@ -104,7 +103,7 @@ public class AdminTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.JOB_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     logoutUser();
   }

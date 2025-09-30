@@ -27,7 +27,6 @@ public class LeaveTest extends BaseTest {
     String middleName = new FakerUtil().generateRandomMiddleName();
     String fullName = firstName + " " + middleName + " " + lastName;
 
-
     loginAsUser();
     pimPage
         .navigateToPimModule()

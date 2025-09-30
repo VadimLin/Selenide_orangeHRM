@@ -42,7 +42,7 @@ public class DashBoardTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.DASHBOARD_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     sa.assertAll();
     logoutUser();

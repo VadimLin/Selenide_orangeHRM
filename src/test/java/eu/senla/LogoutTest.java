@@ -14,7 +14,6 @@ import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-
 public class LogoutTest extends BaseTest {
   @Epic("Authentication")
   @Feature("Logout")
@@ -32,7 +31,7 @@ public class LogoutTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.AUTH_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Url doesn't match"));
     sa.assertAll();
   }

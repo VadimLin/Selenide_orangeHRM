@@ -57,7 +57,7 @@ public class RecruitmentTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(
                         ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT),
                 "Incorrect Url"));
@@ -90,7 +90,7 @@ public class RecruitmentTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(
                         ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT),
                 "Incorrect Url"));
@@ -128,12 +128,11 @@ public class RecruitmentTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Url doesn't match"));
     sa.assertAll();
     logoutUser();
   }
-
 
   @Epic("Recruitment tab")
   @Feature("Add candidate")
@@ -165,7 +164,7 @@ public class RecruitmentTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Url doesn't match"));
     sa.assertAll();
     logoutUser();

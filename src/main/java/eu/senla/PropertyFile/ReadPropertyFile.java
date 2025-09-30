@@ -17,7 +17,6 @@ public class ReadPropertyFile {
     }
   }
 
-
   public static String getProperty(String key) {
     return property.getProperty(key);
   }

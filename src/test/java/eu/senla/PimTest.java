@@ -1,7 +1,6 @@
 package eu.senla;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.github.javafaker.Faker;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PimPage.PimPage;
 import eu.senla.PropertyFile.ReadPropertyFile;
@@ -41,7 +40,7 @@ public class PimTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step("Validate title name", () -> sa.assertEquals(pimPage.getTitle(), "PIM"));
@@ -79,7 +78,7 @@ public class PimTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step(
@@ -118,7 +117,7 @@ public class PimTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step(
@@ -126,7 +125,6 @@ public class PimTest extends BaseTest {
         () -> sa.assertEquals(pimPage.getPersonalDetailTitle(), "Personal Details"));
     sa.assertAll();
   }
-
 
   @Epic("PIM tab")
   @Feature("Add employee")
@@ -157,7 +155,7 @@ public class PimTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step(

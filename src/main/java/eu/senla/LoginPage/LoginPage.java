@@ -1,13 +1,13 @@
 package eu.senla.LoginPage;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+
 import com.codeborne.selenide.SelenideElement;
 import eu.senla.BasePage.BasePage;
 import eu.senla.Endpoints.Endpoints;
 import io.qameta.allure.Step;
-
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPage extends BasePage {
   private final SelenideElement usernameField = $x("//input[@name='username']");
@@ -58,7 +58,7 @@ public class LoginPage extends BasePage {
   }
 
   public String getErrorColor() {
-     return errorColor.getCssValue("color");
+    return errorColor.getCssValue("color");
   }
 
   @Step

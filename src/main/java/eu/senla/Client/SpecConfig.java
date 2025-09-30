@@ -13,7 +13,6 @@ import lombok.experimental.UtilityClass;
 public class SpecConfig {
   private final int statusCode = 200;
 
-
   public static RequestSpecification requestSpecification() {
     return new RequestSpecBuilder()
         .setBaseUri(ReadPropertyFile.getProperty("MAIN_URL"))

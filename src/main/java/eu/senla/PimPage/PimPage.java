@@ -1,14 +1,14 @@
 package eu.senla.PimPage;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+
 import com.codeborne.selenide.SelenideElement;
 import eu.senla.BasePage.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 
 public class PimPage extends BasePage {
   private final SelenideElement pimModuleLink = $("a[href$='viewPimModule']");
@@ -18,26 +18,28 @@ public class PimPage extends BasePage {
   private final SelenideElement middleNameInput = $x("//input[@placeholder='Middle Name']");
   private final SelenideElement lastNameInput = $x("//input[@placeholder='Last Name']");
   private final SelenideElement saveButton = $("button[type='submit']");
-  private final SelenideElement employeeListUrl = $x("//h6[@class='oxd-text oxd-text--h6 --strong']");
+  private final SelenideElement employeeListUrl =
+      $x("//h6[@class='oxd-text oxd-text--h6 --strong']");
   private final SelenideElement dashboardIndicator =
-          $x(
+      $x(
           "//a[@class='oxd-main-menu-item active']/span[@class='oxd-text oxd-text--span oxd-main-menu-item--name']");
   private final SelenideElement personalDetailTitle = $x("//h6[text()='Personal Details']");
-  private final SelenideElement alertMessage = $x("//span[contains(@class, 'oxd-input-group__message')]");
+  private final SelenideElement alertMessage =
+      $x("//span[contains(@class, 'oxd-input-group__message')]");
   private final SelenideElement saveDetailFormButton =
-          $x(
+      $x(
           "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']"
               + "//button[@type='submit']");
 
   @Step("Navigate to Pim tab")
   public PimPage navigateToPimModule() {
-   pimModuleLink.shouldBe(visible).click();
+    pimModuleLink.shouldBe(visible).click();
     return this;
   }
 
   @Step("Click Add button")
   public PimPage clickAddEmployee() {
-   addEmployeeButton.shouldBe(visible).click();
+    addEmployeeButton.shouldBe(visible).click();
     return this;
   }
 
@@ -80,7 +82,6 @@ public class PimPage extends BasePage {
     firstNameElement.sendKeys(Keys.BACK_SPACE);
     return this;
   }
-
 
   @Step("Clear Last Name field")
   public PimPage clearLastName() {
