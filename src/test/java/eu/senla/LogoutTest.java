@@ -23,7 +23,6 @@ public class LogoutTest extends BaseTest {
   @Test
   public void logoutTest() {
     LogoutPage logoutPage = new LogoutPage();
-    loginAsUser();
     logoutPage.openDropDownMenu().clickLogoutButton().getLoginTitle();
     SoftAssert sa = new SoftAssert();
     Allure.step(

@@ -23,7 +23,6 @@ public class DashBoardTest extends BaseTest {
   @Test(description = "Check existing widgets on DashboardPage")
   public void dashboardTest() {
     DashboardPage dashboardPage = new DashboardPage();
-    loginAsUser();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate title name", () -> sa.assertEquals(dashboardPage.getTitle(), "Dashboard"));
