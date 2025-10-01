@@ -1,11 +1,11 @@
 package eu.senla.Client;
 
+import static io.restassured.RestAssured.given;
+
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import lombok.experimental.UtilityClass;
-
-import static io.restassured.RestAssured.given;
 
 @UtilityClass
 public final class OrangeHRMClient {

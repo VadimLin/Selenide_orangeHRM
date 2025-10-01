@@ -31,7 +31,7 @@
     <browser.name>chrome</browser.name>
     <thread.count.value>3</thread.count.value>
     <parallel.value>classes</parallel.value>
-    <selenoid.enable>true</selenoid.enable>
+    <selenoid.enable>false</selenoid.enable>
     <selenoid.url>http://192.168.99.101:4444/wd/hub</selenoid.url>
     <headless>false</headless>
   </properties>
@@ -98,6 +98,12 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
       <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.11.0</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 
@@ -171,15 +177,13 @@
           -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
         </argLine>
         <suiteXmlFiles>
-          <suiteXmlFile>testng.xml</suiteXmlFile>
+          <suiteXmlFile>AllTest.xml</suiteXmlFile>
         </suiteXmlFiles>
         <systemPropertyVariables>
           <browser>${browser.name}</browser>
           <thread-count>${thread.count.value}</thread-count>
           <parallel>${parallel.value}</parallel>
-          <selenoidEnable>${selenoid.enable}</selenoidEnable>
           <selenoidUrl>${selenoid.url}</selenoidUrl>
-          <headless>${headless}</headless>
         </systemPropertyVariables>
       </configuration>
       <executions>

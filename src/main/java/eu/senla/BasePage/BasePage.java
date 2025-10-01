@@ -1,8 +1,8 @@
 package eu.senla.BasePage;
 
-import eu.senla.PropertyFile.ReadPropertyFile;
-
 import static com.codeborne.selenide.Selenide.open;
+
+import eu.senla.PropertyFile.ReadPropertyFile;
 
 public class BasePage {
   public static final String LOGIN_URL = ReadPropertyFile.getProperty("BASEURL");

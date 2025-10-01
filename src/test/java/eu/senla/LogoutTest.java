@@ -23,7 +23,6 @@ public class LogoutTest extends BaseTest {
   @Test
   public void logoutTest() {
     LogoutPage logoutPage = new LogoutPage();
-    loginAsUser();
     logoutPage.openDropDownMenu().clickLogoutButton().getLoginTitle();
     SoftAssert sa = new SoftAssert();
     Allure.step(
@@ -31,7 +30,7 @@ public class LogoutTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.AUTH_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Url doesn't match"));
     sa.assertAll();
   }

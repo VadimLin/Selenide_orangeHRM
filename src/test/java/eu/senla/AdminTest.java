@@ -1,11 +1,10 @@
 package eu.senla;
 
-
 import com.codeborne.selenide.WebDriverRunner;
-import com.github.javafaker.Faker;
 import eu.senla.AdminPage.AdminPage;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PropertyFile.ReadPropertyFile;
+import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -17,6 +16,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class AdminTest extends BaseTest {
+
   @Epic("Admin tab")
   @Feature("Open admin tab")
   @Story("User is able to open Admin tab with valid information on the page")
@@ -25,7 +25,6 @@ public class AdminTest extends BaseTest {
   @Test(description = "Check Admin Page", groups = "smoke")
   public void adminTest() {
     AdminPage adminPage = new AdminPage();
-    loginAsUser();
     adminPage.navigateToAdminModule();
     SoftAssert sa = new SoftAssert();
     Allure.step("Validate title name", () -> sa.assertEquals(adminPage.getAdminTitle(), "Admin"));
@@ -34,7 +33,7 @@ public class AdminTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.ADMIN_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     sa.assertAll();
     logoutUser();
@@ -47,16 +46,13 @@ public class AdminTest extends BaseTest {
   @Severity(SeverityLevel.CRITICAL)
   @Test(description = "Add Job Title")
   public void addJobTitle() {
-    Faker faker = new Faker();
-    String randomJobTitle = faker.job().title();
     AdminPage adminPage = new AdminPage();
-    loginAsUser();
     adminPage
         .navigateToAdminModule()
         .clickDropDownMenu()
         .clickJobTitlesOption()
         .clickAddButton()
-        .fillJobTitlefield(randomJobTitle)
+        .fillJobTitlefield(new FakerUtil().generateRandomTitle())
         .saveJobTitle()
         .isConfirmedMessage();
     SoftAssert sa = new SoftAssert();
@@ -67,7 +63,7 @@ public class AdminTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.JOB_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     sa.assertAll();
     logoutUser();
@@ -80,19 +76,17 @@ public class AdminTest extends BaseTest {
   @Severity(SeverityLevel.CRITICAL)
   @Test(description = "Delete existing Job Title")
   public void deleteJobTitle() {
-    Faker faker = new Faker();
-    String randomJobTitle = faker.job().title();
+    String jobTitleName = new FakerUtil().generateRandomTitle();
     AdminPage adminPage = new AdminPage();
-    loginAsUser();
     adminPage
         .navigateToAdminModule()
         .clickDropDownMenu()
         .clickJobTitlesOption()
         .clickAddButton()
-        .fillJobTitlefield(randomJobTitle)
+        .fillJobTitlefield(jobTitleName)
         .saveJobTitle()
         .isConfirmedMessage()
-        .deleteExistingJobTitle(randomJobTitle)
+        .deleteExistingJobTitle(jobTitleName)
         .confirmDelete()
         .isConfirmDeleteMessage();
     SoftAssert sa = new SoftAssert();
@@ -103,7 +97,7 @@ public class AdminTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.JOB_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Incorrect URL"));
     logoutUser();
   }

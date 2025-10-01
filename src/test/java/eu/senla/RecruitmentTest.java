@@ -1,10 +1,11 @@
 package eu.senla;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.github.javafaker.Faker;
+import eu.senla.DataProviders.ProjectDataProvider;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PropertyFile.ReadPropertyFile;
 import eu.senla.RecruitmentPage.RecruitmentPage;
+import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -23,20 +24,17 @@ public class RecruitmentTest extends BaseTest {
   @Severity(SeverityLevel.CRITICAL)
   @Test(description = "Successful add candidate with all fields")
   public void addCandidateTest() {
-    Faker faker = new Faker();
-    final int words = 5;
-    String firstName = faker.name().firstName();
-    String middleName = faker.name().nameWithMiddle();
-    String lastName = faker.name().lastName();
-    String email = faker.internet().emailAddress();
-    String contactNumber = faker.phoneNumber().phoneNumber();
-    String keywords = faker.lorem().words(words).toString();
-    String notes = faker.lorem().sentence();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String middleName = new FakerUtil().generateRandomMiddleName();
+    String email = new FakerUtil().generateRandomEmailAddress();
+    String contactNumber = new FakerUtil().generateRandomPhoneNumber();
+    String keywords = new FakerUtil().generateRandomKeywords();
+    String notes = new FakerUtil().generateRandomNotes();
 
     String correctContactNumber = contactNumber.replaceAll("[^0-9+\\-\\/()]", "");
 
     RecruitmentPage recruitmentPage = new RecruitmentPage();
-    loginAsUser();
     recruitmentPage
         .navigateToRecruitModule()
         .clickAddButton()
@@ -58,7 +56,7 @@ public class RecruitmentTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(
                         ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT),
                 "Incorrect Url"));
@@ -73,13 +71,11 @@ public class RecruitmentTest extends BaseTest {
   @Severity(SeverityLevel.CRITICAL)
   @Test(description = "Successful adding only with required fields")
   public void successfulAddCandidateOnlyWithRequiredFields() {
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String email = faker.internet().emailAddress();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String email = new FakerUtil().generateRandomEmailAddress();
 
     RecruitmentPage recruitmentPage = new RecruitmentPage();
-    loginAsUser();
     recruitmentPage
         .navigateToRecruitModule()
         .clickAddButton()
@@ -92,7 +88,7 @@ public class RecruitmentTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(
                         ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT),
                 "Incorrect Url"));
@@ -114,7 +110,6 @@ public class RecruitmentTest extends BaseTest {
   public void addCandidateWithInvalidData(
       String description, String firstname, String lastname, String email) {
     RecruitmentPage recruitmentPage = new RecruitmentPage();
-    loginAsUser();
     recruitmentPage
         .navigateToRecruitModule()
         .clickAddButton()
@@ -130,7 +125,7 @@ public class RecruitmentTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Url doesn't match"));
     sa.assertAll();
     logoutUser();
@@ -149,7 +144,6 @@ public class RecruitmentTest extends BaseTest {
   public void addCandidateWithEmptyData(
       String description, String firstname, String lastname, String email) {
     RecruitmentPage recruitmentPage = new RecruitmentPage();
-    loginAsUser();
     recruitmentPage
         .navigateToRecruitModule()
         .clickAddButton()
@@ -166,7 +160,7 @@ public class RecruitmentTest extends BaseTest {
         () ->
             sa.assertEquals(
                 ReadPropertyFile.getProperty("BASEURL") + Endpoints.CANDIDATE_ENDPOINT,
-                    WebDriverRunner.url(),
+                WebDriverRunner.url(),
                 "Url doesn't match"));
     sa.assertAll();
     logoutUser();

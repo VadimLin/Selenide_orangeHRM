@@ -43,11 +43,13 @@ public class LoginPage extends BasePage {
     return this;
   }
 
+
   @Step("Login to app")
   public LoginPage login(String username, String password) {
     enterUserName(username).enterPassword(password).clickSubmitButton();
     return this;
   }
+
 
   public String getAlertText() {
     return alertMessage.shouldBe(visible).getText();
@@ -58,7 +60,7 @@ public class LoginPage extends BasePage {
   }
 
   public String getErrorColor() {
-     return errorColor.getCssValue("color");
+    return errorColor.getCssValue("color");
   }
 
   @Step
