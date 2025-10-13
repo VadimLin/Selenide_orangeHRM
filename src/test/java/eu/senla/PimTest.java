@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PimPage.PimPage;
 import eu.senla.PropertyFile.ReadPropertyFile;
+import eu.senla.SideElement.SideElement;
 import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
@@ -24,15 +25,15 @@ public class PimTest extends BaseTest {
   @Test(description = "Check successful adding of employee")
   public void testAddEmployee() {
 
-    PimPage pimPage = new PimPage();
     String firstName = new FakerUtil().generateRandomFirstName();
     String lastName = new FakerUtil().generateRandomLastName();
     String middleName = new FakerUtil().generateRandomMiddleName();
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate url",
@@ -54,17 +55,18 @@ public class PimTest extends BaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Test
   public void testEmptyFirstNameField() {
-    PimPage pimPage = new PimPage();
+
     String firstName = new FakerUtil().generateRandomFirstName();
     String lastName = new FakerUtil().generateRandomLastName();
     String middleName = new FakerUtil().generateRandomMiddleName();
 
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee()
-        .clearFirstName();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee()
+            .clearFirstName();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate required alert",
@@ -92,17 +94,17 @@ public class PimTest extends BaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Test
   public void testEmptyLastNameField() {
-    PimPage pimPage = new PimPage();
     String firstName = new FakerUtil().generateRandomFirstName();
     String lastName = new FakerUtil().generateRandomLastName();
     String middleName = new FakerUtil().generateRandomMiddleName();
 
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee()
-        .clearLastName();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee()
+            .clearLastName();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate required alert",
@@ -130,21 +132,21 @@ public class PimTest extends BaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Test
   public void testEditFirstNameAndLastNameFields() {
-    PimPage pimPage = new PimPage();
     String firstName = new FakerUtil().generateRandomFirstName();
     String lastName = new FakerUtil().generateRandomLastName();
     String middleName = new FakerUtil().generateRandomMiddleName();
 
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee()
-        .clearFirstName()
-        .clearLastName()
-        .fillFirstName(firstName)
-        .fillLastName(lastName)
-        .clickSaveDetailFormButton();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee()
+            .clearFirstName()
+            .clearLastName()
+            .fillFirstName(firstName)
+            .fillLastName(lastName)
+            .clickSaveDetailFormButton();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate url",

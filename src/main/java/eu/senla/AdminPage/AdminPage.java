@@ -31,12 +31,6 @@ public class AdminPage extends BasePage {
   private final SelenideElement confirmDeleteMessage =
       $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
 
-  @Step("Navigate to Admin Module")
-  public AdminPage navigateToAdminModule() {
-    adminModuleLink.shouldBe(visible).click();
-    return this;
-  }
-
   public String getAdminTitle() {
     return adminTitle.shouldBe(visible).getText();
   }

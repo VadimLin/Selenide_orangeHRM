@@ -31,12 +31,6 @@ public class PimPage extends BasePage {
           "//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']"
               + "//button[@type='submit']");
 
-  @Step("Navigate to Pim tab")
-  public PimPage navigateToPimModule() {
-    pimModuleLink.shouldBe(visible).click();
-    return this;
-  }
-
   @Step("Click Add button")
   public PimPage clickAddEmployee() {
     addEmployeeButton.shouldBe(visible).click();

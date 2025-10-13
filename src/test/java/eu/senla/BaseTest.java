@@ -22,7 +22,6 @@ public class BaseTest {
     loginStrategy.chooseLoginStrategy();
   }
 
-
   @AfterMethod
   public void tearDown() {
     Selenide.closeWebDriver();

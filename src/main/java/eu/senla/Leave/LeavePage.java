@@ -40,12 +40,6 @@ public class LeavePage {
   private final SelenideElement assignButton = $x("//button[@type='submit']");
   private final SelenideElement confirmationMessage = $("#oxd-toaster_1");
 
-  @Step("Navigate to Leave tab")
-  public LeavePage navigateToLeavePage() {
-    leaveModuleLink.shouldBe(visible).click();
-    return this;
-  }
-
   @Step("Click entitlements Dropdown")
   public LeavePage openEntitlementsMenu() {
     entitlementsDropDown.shouldBe(visible).click();

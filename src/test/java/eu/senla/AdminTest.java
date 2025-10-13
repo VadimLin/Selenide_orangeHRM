@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import eu.senla.AdminPage.AdminPage;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PropertyFile.ReadPropertyFile;
+import eu.senla.SideElement.SideElement;
 import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
@@ -24,8 +25,7 @@ public class AdminTest extends BaseTest {
   @Severity(SeverityLevel.CRITICAL)
   @Test(description = "Check Admin Page", groups = "smoke")
   public void adminTest() {
-    AdminPage adminPage = new AdminPage();
-    adminPage.navigateToAdminModule();
+    AdminPage adminPage = new SideElement().navigateToAdminPage();
     SoftAssert sa = new SoftAssert();
     Allure.step("Validate title name", () -> sa.assertEquals(adminPage.getAdminTitle(), "Admin"));
     Allure.step(
@@ -46,15 +46,15 @@ public class AdminTest extends BaseTest {
   @Severity(SeverityLevel.CRITICAL)
   @Test(description = "Add Job Title")
   public void addJobTitle() {
-    AdminPage adminPage = new AdminPage();
-    adminPage
-        .navigateToAdminModule()
-        .clickDropDownMenu()
-        .clickJobTitlesOption()
-        .clickAddButton()
-        .fillJobTitlefield(new FakerUtil().generateRandomTitle())
-        .saveJobTitle()
-        .isConfirmedMessage();
+    AdminPage adminPage =
+        new SideElement()
+            .navigateToAdminPage()
+            .clickDropDownMenu()
+            .clickJobTitlesOption()
+            .clickAddButton()
+            .fillJobTitlefield(new FakerUtil().generateRandomTitle())
+            .saveJobTitle()
+            .isConfirmedMessage();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate title name", () -> sa.assertEquals(adminPage.getJobTitle(), "Job Titles"));
@@ -77,18 +77,18 @@ public class AdminTest extends BaseTest {
   @Test(description = "Delete existing Job Title")
   public void deleteJobTitle() {
     String jobTitleName = new FakerUtil().generateRandomTitle();
-    AdminPage adminPage = new AdminPage();
-    adminPage
-        .navigateToAdminModule()
-        .clickDropDownMenu()
-        .clickJobTitlesOption()
-        .clickAddButton()
-        .fillJobTitlefield(jobTitleName)
-        .saveJobTitle()
-        .isConfirmedMessage()
-        .deleteExistingJobTitle(jobTitleName)
-        .confirmDelete()
-        .isConfirmDeleteMessage();
+    AdminPage adminPage =
+        new SideElement()
+            .navigateToAdminPage()
+            .clickDropDownMenu()
+            .clickJobTitlesOption()
+            .clickAddButton()
+            .fillJobTitlefield(jobTitleName)
+            .saveJobTitle()
+            .isConfirmedMessage()
+            .deleteExistingJobTitle(jobTitleName)
+            .confirmDelete()
+            .isConfirmDeleteMessage();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate title name", () -> sa.assertEquals(adminPage.getJobTitle(), "Job Titles"));

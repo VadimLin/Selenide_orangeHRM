@@ -5,6 +5,7 @@ import eu.senla.DataProviders.ProjectDataProvider;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PropertyFile.ReadPropertyFile;
 import eu.senla.RecruitmentPage.RecruitmentPage;
+import eu.senla.SideElement.SideElement;
 import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
@@ -34,21 +35,21 @@ public class RecruitmentTest extends BaseTest {
 
     String correctContactNumber = contactNumber.replaceAll("[^0-9+\\-\\/()]", "");
 
-    RecruitmentPage recruitmentPage = new RecruitmentPage();
-    recruitmentPage
-        .navigateToRecruitModule()
-        .clickAddButton()
-        .enterFirstName(firstName)
-        .enterMiddleName(middleName)
-        .enterLastName(lastName)
-        .openDropDownMenu()
-        .chooseFromListVacancies()
-        .enterEmail(email)
-        .enterContactNumber(correctContactNumber)
-        .enterKeywords(keywords)
-        .enterNotes(notes)
-        .clickSaveButton()
-        .isConfimed();
+    RecruitmentPage recruitmentPage =
+        new SideElement()
+            .navigateToRecruitmentPage()
+            .clickAddButton()
+            .enterFirstName(firstName)
+            .enterMiddleName(middleName)
+            .enterLastName(lastName)
+            .openDropDownMenu()
+            .chooseFromListVacancies()
+            .enterEmail(email)
+            .enterContactNumber(correctContactNumber)
+            .enterKeywords(keywords)
+            .enterNotes(notes)
+            .clickSaveButton()
+            .isConfimed();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate title name", () -> sa.assertEquals(recruitmentPage.getTitle(), "Recruitment"));
@@ -75,12 +76,12 @@ public class RecruitmentTest extends BaseTest {
     String lastName = new FakerUtil().generateRandomLastName();
     String email = new FakerUtil().generateRandomEmailAddress();
 
-    RecruitmentPage recruitmentPage = new RecruitmentPage();
-    recruitmentPage
-        .navigateToRecruitModule()
-        .clickAddButton()
-        .fillOnlyRequiredCandidateFields(firstName, lastName, email)
-        .isConfimed();
+    RecruitmentPage recruitmentPage =
+        new SideElement()
+            .navigateToRecruitmentPage()
+            .clickAddButton()
+            .fillOnlyRequiredCandidateFields(firstName, lastName, email)
+            .isConfimed();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate title name", () -> sa.assertEquals(recruitmentPage.getTitle(), "Recruitment"));
@@ -109,11 +110,11 @@ public class RecruitmentTest extends BaseTest {
       dataProviderClass = ProjectDataProvider.class)
   public void addCandidateWithInvalidData(
       String description, String firstname, String lastname, String email) {
-    RecruitmentPage recruitmentPage = new RecruitmentPage();
-    recruitmentPage
-        .navigateToRecruitModule()
-        .clickAddButton()
-        .fillOnlyRequiredCandidateFields(firstname, lastname, email);
+    RecruitmentPage recruitmentPage =
+        new SideElement()
+            .navigateToRecruitmentPage()
+            .clickAddButton()
+            .fillOnlyRequiredCandidateFields(firstname, lastname, email);
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate alert text",
@@ -143,11 +144,11 @@ public class RecruitmentTest extends BaseTest {
       dataProviderClass = ProjectDataProvider.class)
   public void addCandidateWithEmptyData(
       String description, String firstname, String lastname, String email) {
-    RecruitmentPage recruitmentPage = new RecruitmentPage();
-    recruitmentPage
-        .navigateToRecruitModule()
-        .clickAddButton()
-        .fillOnlyRequiredCandidateFields(firstname, lastname, email);
+    RecruitmentPage recruitmentPage =
+        new SideElement()
+            .navigateToRecruitmentPage()
+            .clickAddButton()
+            .fillOnlyRequiredCandidateFields(firstname, lastname, email);
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate alert text",

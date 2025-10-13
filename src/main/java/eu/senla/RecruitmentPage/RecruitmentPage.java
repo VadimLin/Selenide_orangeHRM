@@ -42,12 +42,6 @@ public class RecruitmentPage extends BasePage {
           "//input[@class='oxd-input oxd-input--active "
               + "oxd-input--error']/ancestor::div/span[contains(@class, 'oxd-input-group__message')]");
 
-  @Step("Navigate to Recruitment tab")
-  public RecruitmentPage navigateToRecruitModule() {
-    recruitModuleLink.shouldBe(visible).click();
-    return this;
-  }
-
   public String getTitle() {
     return recruitTitle.shouldBe(visible).getText();
   }

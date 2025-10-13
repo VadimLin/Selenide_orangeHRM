@@ -16,5 +16,4 @@ public class Endpoints {
   public static final String AUTH_VALIDATE_URL = "/auth/validate";
   public static final String DASHBOARD_URL = "/dashboard/index";
   public static final String LOGIN_STRATEGY = ReadPropertyFile.getProperty("LOGIN_STRATEGY");
-
 }

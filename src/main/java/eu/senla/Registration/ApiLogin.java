@@ -5,7 +5,7 @@ import eu.senla.Client.LoginHelper;
 import eu.senla.PropertyFile.ReadPropertyFile;
 import org.openqa.selenium.Cookie;
 
-public class ApiLogin implements LoginStrategy{
+public class ApiLogin implements LoginStrategy {
 
   private String targetUrl;
 
@@ -21,7 +21,6 @@ public class ApiLogin implements LoginStrategy{
             .isHttpOnly(true)
             .sameSite("Lax")
             .build();
-
 
     WebDriverRunner.getWebDriver().manage().deleteCookieNamed("orangehrm");
     WebDriverRunner.getWebDriver().manage().addCookie(cookie);
