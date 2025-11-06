@@ -18,8 +18,8 @@ public class BaseTest {
   @BeforeMethod
   public void setup() {
     Configuration.setup();
-    loginStrategy = new ChooseLoginStrategy();
-    loginStrategy.chooseLoginStrategy();
+//    loginStrategy = new ChooseLoginStrategy();
+//    loginStrategy.chooseLoginStrategy();
   }
 
   @AfterMethod
