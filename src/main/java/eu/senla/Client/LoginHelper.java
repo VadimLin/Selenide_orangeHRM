@@ -1,5 +1,7 @@
 package eu.senla.Client;
 
+import static io.restassured.RestAssured.given;
+
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PropertyFile.ReadPropertyFile;
 import io.restassured.http.Cookie;
@@ -10,8 +12,6 @@ import lombok.experimental.UtilityClass;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-
-import static io.restassured.RestAssured.given;
 
 @UtilityClass
 public final class LoginHelper {

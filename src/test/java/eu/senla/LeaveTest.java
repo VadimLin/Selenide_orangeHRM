@@ -1,8 +1,10 @@
 package eu.senla;
 
-import com.github.javafaker.Faker;
 import eu.senla.Leave.LeavePage;
 import eu.senla.PimPage.PimPage;
+import eu.senla.PropertyFile.ReadPropertyFile;
+import eu.senla.SideElement.SideElement;
+import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -20,39 +22,37 @@ public class LeaveTest extends BaseTest {
   @Test
   public void addAssignLeaveTest() throws InterruptedException {
 
-    PimPage pimPage = new PimPage();
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String middleName = faker.funnyName().name();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String middleName = new FakerUtil().generateRandomMiddleName();
     String fullName = firstName + " " + middleName + " " + lastName;
 
-    loginAsUser();
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee();
 
-    LeavePage leavePage = new LeavePage();
     final int defaultEntitlementDays = 123;
-    leavePage
-        .navigateToLeavePage()
-        .openEntitlementsMenu()
-        .clickAddEntitlements()
-        .fillEmployeeName(fullName)
-        .clickListbox()
-        .openLeaveTypeDropDown("CAN - FMLA")
-        .fillEntitlementField(defaultEntitlementDays)
-        .clickSaveButton()
-        .clickConfirmButton()
-        .openAssignLeaveMenu()
-        .fillEmployeeName(fullName)
-        .clickListbox()
-        .openLeaveTypeDropDown("CAN - FMLA")
-        .inputDateFrom("2025-01-06")
-        .inputDateTo("2025-07-06")
-        .clickAssignButton()
-        .isConfirmed();
+    LeavePage leavePage =
+        new SideElement()
+            .navigateToLeavePage()
+            .openEntitlementsMenu()
+            .clickAddEntitlements()
+            .fillEmployeeName(fullName)
+            .clickListbox()
+            .openLeaveTypeDropDown(ReadPropertyFile.getProperty("LEAVE_TYPE_DROPDOWN"))
+            .fillEntitlementField(defaultEntitlementDays)
+            .clickSaveButton()
+            .clickConfirmButton()
+            .openAssignLeaveMenu()
+            .fillEmployeeName(fullName)
+            .clickListbox()
+            .openLeaveTypeDropDown(ReadPropertyFile.getProperty("LEAVE_TYPE_DROPDOWN"))
+            .inputDateFrom(ReadPropertyFile.getProperty("INPUT_DATE_FROM"))
+            .inputDateTo(ReadPropertyFile.getProperty("INPUT_DATE_TO"))
+            .clickAssignButton()
+            .isConfirmed();
   }
 }

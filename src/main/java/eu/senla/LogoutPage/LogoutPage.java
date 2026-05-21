@@ -1,12 +1,12 @@
 package eu.senla.LogoutPage;
 
-import com.codeborne.selenide.SelenideElement;
-import eu.senla.BasePage.BasePage;
-import io.qameta.allure.Step;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+
+import com.codeborne.selenide.SelenideElement;
+import eu.senla.BasePage.BasePage;
+import io.qameta.allure.Step;
 
 public class LogoutPage extends BasePage {
   private final SelenideElement dropDownMenu =

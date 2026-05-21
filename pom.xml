@@ -16,7 +16,7 @@
     <surefire.version>3.5.3</surefire.version>
     <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
     <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
-    <selenide.version>7.10.0</selenide.version>
+    <selenide.version>7.12.0</selenide.version>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <allure-testng.version>2.27.0</allure-testng.version>
@@ -31,9 +31,12 @@
     <browser.name>chrome</browser.name>
     <thread.count.value>3</thread.count.value>
     <parallel.value>classes</parallel.value>
-    <selenoid.enable>true</selenoid.enable>
+    <selenoid.enable>false</selenoid.enable>
     <selenoid.url>http://192.168.99.101:4444/wd/hub</selenoid.url>
     <headless>false</headless>
+    <testcontainers.version>1.20.0</testcontainers.version>
+    <kafka.version>3.6.0</kafka.version>
+    <awaitility.version>4.2.0</awaitility.version>
   </properties>
 
   <dependencies>
@@ -99,7 +102,49 @@
       <artifactId>jackson-annotations</artifactId>
       <version>${jackson.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <!-- Testcontainers для Kafka -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>kafka</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Для работы с Kafka (клиент) -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Для асинхронных ожиданий (Awaitility) -->
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>${awaitility.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
 
   <build>
   <plugins>
@@ -171,15 +216,13 @@
           -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
         </argLine>
         <suiteXmlFiles>
-          <suiteXmlFile>testng.xml</suiteXmlFile>
+          <suiteXmlFile>AllTest.xml</suiteXmlFile>
         </suiteXmlFiles>
         <systemPropertyVariables>
           <browser>${browser.name}</browser>
           <thread-count>${thread.count.value}</thread-count>
           <parallel>${parallel.value}</parallel>
-          <selenoidEnable>${selenoid.enable}</selenoidEnable>
           <selenoidUrl>${selenoid.url}</selenoidUrl>
-          <headless>${headless}</headless>
         </systemPropertyVariables>
       </configuration>
       <executions>

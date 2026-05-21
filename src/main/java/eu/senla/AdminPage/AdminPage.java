@@ -1,39 +1,35 @@
 package eu.senla.AdminPage;
 
-import com.codeborne.selenide.SelenideElement;
-import eu.senla.BasePage.BasePage;
-import io.qameta.allure.Step;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
+import com.codeborne.selenide.SelenideElement;
+import eu.senla.BasePage.BasePage;
+import io.qameta.allure.Step;
+
 public class AdminPage extends BasePage {
 
-  private final SelenideElement adminModuleLink = $x("//a[@href='/web/index.php/admin/viewAdminModule']");
+  private final SelenideElement adminModuleLink =
+      $x("//a[@href='/web/index.php/admin/viewAdminModule']");
 
   private final SelenideElement jobDropDown = $x("//span[normalize-space()='Job']");
   private final SelenideElement jobTitlesOption = $x("//a[normalize-space()='Job Titles']");
   private final SelenideElement addButton = $x("//i[@class='oxd-icon bi-plus oxd-button-icon']");
   private final SelenideElement jobTitle = $x("//h6[normalize-space()='Job Titles']");
   private final SelenideElement jobTitleField =
-          $x(
+      $x(
           "//div[@class='oxd-input-group oxd-input-field-bottom-space']"
               + "//div//input[@class='oxd-input oxd-input--active']");
   private final SelenideElement saveButton = $("button[type='submit']");
   private final SelenideElement confirmationMessage =
-          $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
+      $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
   private final SelenideElement adminTitle =
       $(".oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module");
-  private final SelenideElement confirmDeleteButton = $x("//button[normalize-space()='Yes, Delete']");
+  private final SelenideElement confirmDeleteButton =
+      $x("//button[normalize-space()='Yes, Delete']");
   private final SelenideElement confirmDeleteMessage =
-          $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
-
-  @Step("Navigate to Admin Module")
-  public AdminPage navigateToAdminModule() {
-    adminModuleLink.shouldBe(visible).click();
-    return this;
-  }
+      $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
 
   public String getAdminTitle() {
     return adminTitle.shouldBe(visible).getText();
@@ -93,7 +89,7 @@ public class AdminPage extends BasePage {
 
   @Step("Click delete confirmation")
   public AdminPage confirmDelete() {
-   confirmDeleteButton.shouldBe(visible).click();
+    confirmDeleteButton.shouldBe(visible).click();
     return this;
   }
 

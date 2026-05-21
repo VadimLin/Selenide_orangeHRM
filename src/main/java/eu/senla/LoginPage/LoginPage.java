@@ -44,7 +44,7 @@ public class LoginPage extends BasePage {
   }
 
   @Step("Login to app")
-  public LoginPage login(String username, String password) {
+  public LoginPage loginUI(String username, String password) {
     enterUserName(username).enterPassword(password).clickSubmitButton();
     return this;
   }
@@ -58,7 +58,7 @@ public class LoginPage extends BasePage {
   }
 
   public String getErrorColor() {
-     return errorColor.getCssValue("color");
+    return errorColor.getCssValue("color");
   }
 
   @Step

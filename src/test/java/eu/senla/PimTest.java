@@ -1,10 +1,11 @@
 package eu.senla;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.github.javafaker.Faker;
 import eu.senla.Endpoints.Endpoints;
 import eu.senla.PimPage.PimPage;
 import eu.senla.PropertyFile.ReadPropertyFile;
+import eu.senla.SideElement.SideElement;
+import eu.senla.Utils.FakerUtil.FakerUtil;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -24,24 +25,21 @@ public class PimTest extends BaseTest {
   @Test(description = "Check successful adding of employee")
   public void testAddEmployee() {
 
-    PimPage pimPage = new PimPage();
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String middleName = faker.funnyName().name();
-
-    loginAsUser();
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String middleName = new FakerUtil().generateRandomMiddleName();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step("Validate title name", () -> sa.assertEquals(pimPage.getTitle(), "PIM"));
@@ -57,19 +55,18 @@ public class PimTest extends BaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Test
   public void testEmptyFirstNameField() {
-    PimPage pimPage = new PimPage();
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String middleName = faker.funnyName().name();
 
-    loginAsUser();
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee()
-        .clearFirstName();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String middleName = new FakerUtil().generateRandomMiddleName();
+
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee()
+            .clearFirstName();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate required alert",
@@ -80,7 +77,7 @@ public class PimTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step(
@@ -97,19 +94,17 @@ public class PimTest extends BaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Test
   public void testEmptyLastNameField() {
-    PimPage pimPage = new PimPage();
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String middleName = faker.funnyName().name();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String middleName = new FakerUtil().generateRandomMiddleName();
 
-    loginAsUser();
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee()
-        .clearLastName();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee()
+            .clearLastName();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate required alert",
@@ -120,7 +115,7 @@ public class PimTest extends BaseTest {
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step(
@@ -137,29 +132,27 @@ public class PimTest extends BaseTest {
   @Severity(SeverityLevel.NORMAL)
   @Test
   public void testEditFirstNameAndLastNameFields() {
-    PimPage pimPage = new PimPage();
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String middleName = faker.funnyName().name();
+    String firstName = new FakerUtil().generateRandomFirstName();
+    String lastName = new FakerUtil().generateRandomLastName();
+    String middleName = new FakerUtil().generateRandomMiddleName();
 
-    loginAsUser();
-    pimPage
-        .navigateToPimModule()
-        .clickAddEmployee()
-        .fillEmployeeDetails(firstName, middleName, lastName)
-        .saveEmployee()
-        .clearFirstName()
-        .clearLastName()
-        .fillFirstName(firstName)
-        .fillLastName(lastName)
-        .clickSaveDetailFormButton();
+    PimPage pimPage =
+        new SideElement()
+            .navigateToPimPage()
+            .clickAddEmployee()
+            .fillEmployeeDetails(firstName, middleName, lastName)
+            .saveEmployee()
+            .clearFirstName()
+            .clearLastName()
+            .fillFirstName(firstName)
+            .fillLastName(lastName)
+            .clickSaveDetailFormButton();
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate url",
         () ->
             sa.assertTrue(
-                            WebDriverRunner.url()
+                WebDriverRunner.url()
                     .contains(ReadPropertyFile.getProperty("BASEURL") + Endpoints.PIM_ENDPOINT),
                 "Incorrect Url"));
     Allure.step(

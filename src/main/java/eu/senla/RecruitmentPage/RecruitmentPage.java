@@ -1,12 +1,12 @@
 package eu.senla.RecruitmentPage;
 
-import com.codeborne.selenide.SelenideElement;
-import eu.senla.BasePage.BasePage;
-import io.qameta.allure.Step;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+
+import com.codeborne.selenide.SelenideElement;
+import eu.senla.BasePage.BasePage;
+import io.qameta.allure.Step;
 
 public class RecruitmentPage extends BasePage {
 
@@ -17,33 +17,30 @@ public class RecruitmentPage extends BasePage {
   private final SelenideElement recruitTitle =
       $(".oxd-text.oxd-text--h6.oxd-topbar-header-breadcrumb-module");
 
-  private final SelenideElement addButton = $x("//div[@class='orangehrm-header-container']/child::button");
+  private final SelenideElement addButton =
+      $x("//div[@class='orangehrm-header-container']/child::button");
   private final SelenideElement firstNameField = $x("//input[@placeholder='First Name']");
   private final SelenideElement middleNameField = $x("//input[@placeholder='Middle Name']");
   private final SelenideElement lastNameField = $x("//input[@placeholder='Last Name']");
   private final SelenideElement dropDownVacancyMenu =
-          $x("//div[@class='oxd-select-text--after']/child::i");
+      $x("//div[@class='oxd-select-text--after']/child::i");
   private final SelenideElement listOfVacancies = $("div[role='listbox'] div:nth-of-type(3) span");
   private final SelenideElement emailField =
-          $x("//label[contains(text(),'Email')]/parent::div/following::div[1]/input");
+      $x("//label[contains(text(),'Email')]/parent::div/following::div[1]/input");
   private final SelenideElement contactNumberField =
-          $x("//label[text()='Contact Number']/parent::div/following::div[1]/input");
+      $x("//label[text()='Contact Number']/parent::div/following::div[1]/input");
   private final SelenideElement keywordsField =
-          $x("//input[@placeholder='Enter comma seperated words...']");
+      $x("//input[@placeholder='Enter comma seperated words...']");
   private final SelenideElement notesField = $x("//textarea[@placeholder='Type here']");
   private final SelenideElement saveButton = $("button[type='submit']");
-  private final SelenideElement confirmMessage = $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
-  private final SelenideElement alertMessage = $x("//span[contains(@class, 'oxd-input-group__message')]");
+  private final SelenideElement confirmMessage =
+      $x("//div[@id='oxd-toaster_1']//p[text()='Success']");
+  private final SelenideElement alertMessage =
+      $x("//span[contains(@class, 'oxd-input-group__message')]");
   private final SelenideElement alertEmailMessage =
-          $x(
+      $x(
           "//input[@class='oxd-input oxd-input--active "
               + "oxd-input--error']/ancestor::div/span[contains(@class, 'oxd-input-group__message')]");
-
-  @Step("Navigate to Recruitment tab")
-  public RecruitmentPage navigateToRecruitModule() {
-    recruitModuleLink.shouldBe(visible).click();
-    return this;
-  }
 
   public String getTitle() {
     return recruitTitle.shouldBe(visible).getText();
@@ -51,7 +48,7 @@ public class RecruitmentPage extends BasePage {
 
   @Step("Click save button")
   public RecruitmentPage clickAddButton() {
-   addButton.shouldBe(visible).click();
+    addButton.shouldBe(visible).click();
     return this;
   }
 

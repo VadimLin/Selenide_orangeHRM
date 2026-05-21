@@ -2,9 +2,10 @@ package eu.senla.Registration;
 
 import com.codeborne.selenide.WebDriverRunner;
 import eu.senla.Client.LoginHelper;
+import eu.senla.PropertyFile.ReadPropertyFile;
 import org.openqa.selenium.Cookie;
 
-public class ApiLogin {
+public class ApiLogin implements LoginStrategy {
 
   private String targetUrl;
 
@@ -15,7 +16,7 @@ public class ApiLogin {
   public final void login() {
     Cookie cookie =
         new Cookie.Builder("orangehrm", LoginHelper.getCookie())
-            .domain("opensource-demo.orangehrmlive.com")
+            .domain(ReadPropertyFile.getProperty("DOMAIN"))
             .path("/web")
             .isHttpOnly(true)
             .sameSite("Lax")
