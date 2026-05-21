@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
   public void testValidLogin() {
 
     LoginPage loginPage = new LoginPage();
-    loginPage.load().isLoginSuccessful();
+    loginPage.load().loginUI(login, password).isLoginSuccessful();
     SoftAssert sa = new SoftAssert();
     sa.assertEquals(
         ReadPropertyFile.getProperty("BASEURL") + Endpoints.DASHBOARD_ENDPOINT,
