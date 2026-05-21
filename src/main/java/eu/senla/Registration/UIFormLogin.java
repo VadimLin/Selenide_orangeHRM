@@ -7,6 +7,8 @@ public class UIFormLogin implements LoginStrategy {
   @Override
   public final void login() throws Exception {
     new LoginPage()
-        .login(ReadPropertyFile.getProperty("USERNAME"), ReadPropertyFile.getProperty("PASSWORD"));
+            .enterUserName(ReadPropertyFile.getProperty("USERNAME"))
+            .enterPassword(ReadPropertyFile.getProperty("PASSWORD"))
+            .clickSubmitButton();
   }
 }

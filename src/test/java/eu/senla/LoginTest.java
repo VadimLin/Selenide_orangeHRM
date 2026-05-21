@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
   public void testValidLogin() {
 
     LoginPage loginPage = new LoginPage();
-    loginPage.load().login(login, password).isLoginSuccessful();
+    loginPage.load().isLoginSuccessful();
     SoftAssert sa = new SoftAssert();
     sa.assertEquals(
         ReadPropertyFile.getProperty("BASEURL") + Endpoints.DASHBOARD_ENDPOINT,
@@ -49,7 +49,7 @@ public class LoginTest extends BaseTest {
       dataProviderClass = ProjectDataProvider.class)
   public void testInvalidLogin(String description, String username, String pwd) {
     LoginPage loginPage = new LoginPage();
-    loginPage.load().login(username, pwd);
+    loginPage.load().loginUI(username, pwd);
     SoftAssert sa = new SoftAssert();
 
     Allure.step(
@@ -79,7 +79,7 @@ public class LoginTest extends BaseTest {
       dataProviderClass = ProjectDataProvider.class)
   public void testEmptyLogin(String description, String username, String pwd) {
     LoginPage loginPage = new LoginPage();
-    loginPage.load().login(username, pwd);
+    loginPage.load().loginUI(username, pwd);
     SoftAssert sa = new SoftAssert();
     Allure.step(
         "Validate error alert text", () -> sa.assertEquals("Required", loginPage.getErrorText()));

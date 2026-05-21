@@ -7,7 +7,7 @@ pipeline {
 
     parameters {
         string(name: 'branchName', defaultValue: 'master', description: 'Branch for build')
-        string(name: 'config', defaultValue: 'AllTest', description: 'TestNG suite file(without .xml extension)')
+        string(name: 'profile', defaultValue: 'AllTest', description: 'TestNG suite file(without .xml extension)')
         string(name: 'browser', defaultValue: 'chrome', description: 'Browser to use for tests')
         string(name: 'threadCount', defaultValue: '2', description: 'Number of parallel threads')
 
@@ -25,7 +25,7 @@ pipeline {
                 bat """
                     mvn clean test
                         -Dbrowser=${params.browser} ^
-                        -Dconfig=${params.config} ^
+                        -Pprofile=${params.profile} ^
                         -DthreadCount=${params.threadCount}
                 """
             }

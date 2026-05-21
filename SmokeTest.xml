@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="SmokeGroupTests" parallel="classes" thread-count="2">
+    <test name="Regression3">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="eu.senla.AdminTest"/>
+            <class name="eu.senla.LoginTest"/>
+
+        </classes>
+    </test>
+</suite>

@@ -34,6 +34,9 @@
     <selenoid.enable>false</selenoid.enable>
     <selenoid.url>http://192.168.99.101:4444/wd/hub</selenoid.url>
     <headless>false</headless>
+    <testcontainers.version>1.20.0</testcontainers.version>
+    <kafka.version>3.6.0</kafka.version>
+    <awaitility.version>4.2.0</awaitility.version>
   </properties>
 
   <dependencies>
@@ -102,10 +105,158 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.11.0</version>
+      <version>${testng.version}</version>
       <scope>compile</scope>
     </dependency>
+    <!-- Testcontainers для Kafka -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>kafka</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Для работы с Kafka (клиент) -->
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Для асинхронных ожиданий (Awaitility) -->
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>${awaitility.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
+
+  <profiles>
+    <profile>
+      <id>Regression</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${surefire.version}</version>
+            <configuration>
+              <argLine>
+                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+              </argLine>
+              <suiteXmlFiles>
+                <suiteXmlFile>src/test/resources/config/AllTest.xml</suiteXmlFile>
+              </suiteXmlFiles>
+              <systemPropertyVariables>
+                <browser>${browser.name}</browser>
+                <thread-count>${thread.count.value}</thread-count>
+                <parallel>${parallel.value}</parallel>
+                <selenoidEnable>${selenoid.enable}</selenoidEnable>
+                <selenoidUrl>${selenoid.url}</selenoidUrl>
+                <headless>${headless}</headless>
+              </systemPropertyVariables>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>Extended</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${surefire.version}</version>
+            <configuration>
+              <argLine>
+                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+              </argLine>
+              <suiteXmlFiles>
+                <suiteXmlFile>src/test/resources/config/ExtendedTest.xml</suiteXmlFile>
+              </suiteXmlFiles>
+              <systemPropertyVariables>
+                <browser>${browser.name}</browser>
+                <thread-count>${thread.count.value}</thread-count>
+                <parallel>${parallel.value}</parallel>
+                <selenoidEnable>${selenoid.enable}</selenoidEnable>
+                <selenoidUrl>${selenoid.url}</selenoidUrl>
+                <headless>${headless}</headless>
+              </systemPropertyVariables>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>Smoke</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${surefire.version}</version>
+            <configuration>
+              <argLine>
+                -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+              </argLine>
+              <suiteXmlFiles>
+                <suiteXmlFile>src/test/resources/config/SmokeTest.xml</suiteXmlFile>
+              </suiteXmlFiles>
+              <systemPropertyVariables>
+                <browser>${browser.name}</browser>
+                <thread-count>${thread.count.value}</thread-count>
+                <parallel>${parallel.value}</parallel>
+                <selenoidEnable>${selenoid.enable}</selenoidEnable>
+                <selenoidUrl>${selenoid.url}</selenoidUrl>
+                <headless>${headless}</headless>
+              </systemPropertyVariables>
+            </configuration>
+            <executions>
+              <execution>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 
   <build>
   <plugins>

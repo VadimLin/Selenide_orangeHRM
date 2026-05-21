@@ -2,13 +2,6 @@
 
 <suite name="All Test Suite" parallel="tests" thread-count="3">
     <test name="Regression Сhrome" thread-count="3" parallel="methods">
-        <parameter name="browser" value="CHROME"/>
-        <classes>
-            <class name="eu.senla.LoginTest"/>
-        </classes>
-    </test>
-    <test name="Regression Firefox" thread-count="3" parallel="methods">
-        <parameter name="browser" value="FIREFOX"/>
         <classes>
             <class name="eu.senla.LoginTest"/>
         </classes>
